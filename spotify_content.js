@@ -5,12 +5,25 @@ function injectSpotifyButton() {
 
     // Target the Like/Heart button in the Now Playing footer
     // Spotify's class names are obfuscated, so we look for the button with specific aria-label or testid
-    // Common selector for the "Now Playing" widget's right side (where the heart is)
-    // We can try to find the heart button directly.
-    const likeBtn = document.querySelector('button[data-testid="add-button"]') || document.querySelector('button[aria-label="Save to Your Library"]') || document.querySelector('button[aria-label="Remove from Your Library"]');
 
-    if (likeBtn && likeBtn.parentElement) {
-        console.log('SpotJump: Found Like button, injecting YouTube button...');
+    // Strategy 1: Try to find the Like/Add/Remove button
+    let anchor = document.querySelector('button[data-testid="add-button"]') ||
+        document.querySelector('button[data-testid="remove-button"]') ||
+        document.querySelector('button[aria-label="Save to Your Library"]') ||
+        document.querySelector('button[aria-label="Remove from Your Library"]');
+
+    // Strategy 2: If not found, try to find the "Now Playing" widget container and append to it
+    if (!anchor) {
+        const nowPlayingWidget = document.querySelector('div[data-testid="now-playing-widget"]');
+        if (nowPlayingWidget) {
+            console.log('SpotJump: Like button not found, appending to Now Playing widget');
+            // We want to append it to the end of the widget, or after the last child
+            anchor = nowPlayingWidget;
+        }
+    }
+
+    if (anchor) {
+        console.log('SpotJump: Found anchor for injection:', anchor);
 
         const btn = document.createElement('button');
         btn.className = 'spotjump-yt-btn';
@@ -25,11 +38,16 @@ function injectSpotifyButton() {
 
         btn.onclick = jumpToYouTube;
 
-        // Insert after the Like button
-        likeBtn.insertAdjacentElement('afterend', btn);
+        // If anchor is the widget itself, append. If it's the button, insert after.
+        if (anchor.getAttribute('data-testid') === 'now-playing-widget') {
+            anchor.appendChild(btn);
+        } else {
+            anchor.insertAdjacentElement('afterend', btn);
+        }
+
         console.log('SpotJump: YouTube button injected successfully');
     } else {
-        // console.log('SpotJump: Like button not found yet');
+        console.log('SpotJump: No suitable anchor found for injection');
     }
 }
 
