@@ -1,4 +1,4 @@
-.spoti-search-btn {
+.spotjump-btn {
     background-color: #1DB954;
     /* Spotify Green */
     color: white;
@@ -22,43 +22,43 @@
 
 /* Dark mode support - keep it green but maybe adjust hover */
 @media (prefers-color-scheme: dark) {
-    .spoti-search-btn {
+    .spotjump-btn {
         background-color: #1DB954;
         color: white;
     }
 
-    .spoti-search-btn:hover {
+    .spotjump-btn:hover {
         background-color: #1ed760;
     }
 }
 
 /* Also try to detect YouTube's dark mode class if possible, usually on html tag */
-html[dark] .spoti-search-btn {
+html[dark] .spotjump-btn {
     background-color: #1DB954;
     color: white;
 }
 
-html[dark] .spoti-search-btn:hover {
+html[dark] .spotjump-btn:hover {
     background-color: #1ed760;
 }
 
-.spoti-search-btn:hover {
+.spotjump-btn:hover {
     background-color: #1ed760;
 }
 
-.spoti-icon {
+.spotjump-icon {
     display: flex;
     align-items: center;
     margin-right: 6px;
 }
 
-.spoti-icon svg {
+.spotjump-icon svg {
     width: 20px;
     height: 20px;
     fill: currentColor;
     /* Matches text color */
 }
 
-.spoti-text {
+.spotjump-text {
     line-height: 1;
 }

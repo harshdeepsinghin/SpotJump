@@ -1,13 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "SpotiSearch for YouTube",
+  "name": "SpotJump",
   "version": "1.0",
-  "description": "Search for the current YouTube video on Spotify",
+  "description": "Jump from YouTube to Spotify instantly",
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
-      "js": ["content.js"],
-      "css": ["styles.css"]
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
     }
   ]
 }
