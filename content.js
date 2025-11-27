@@ -28,12 +28,7 @@ function injectButton() {
             <span class="spotjump-text">SpotJump</span>
         `;
 
-        btn.onclick = () => {
-            const currentTitle = document.querySelector('ytd-watch-metadata h1')?.innerText || document.title.replace(' - YouTube', '');
-            const cleanTitle = currentTitle.replace(/[\(\[\{].*?[\)\]\}]/g, '').trim();
-            const query = encodeURIComponent(cleanTitle);
-            window.open(`https://open.spotify.com/search/${query}`, '_blank');
-        };
+        btn.onclick = jumpToSpotify;
 
         // Insert after the Like/Dislike container
         try {
@@ -93,10 +88,28 @@ if (window.location.href.includes('/watch')) {
     console.log('SpotJump: Not a watch page');
 }
 
-// Handle navigation events specifically for YouTube SPA
 window.addEventListener('yt-navigate-finish', () => {
     console.log('SpotJump: yt-navigate-finish detected');
     if (window.location.href.includes('/watch')) {
         startInjectionLoop();
+    }
+});
+
+// Core functionality extracted for reuse
+function jumpToSpotify() {
+    const currentTitle = document.querySelector('ytd-watch-metadata h1')?.innerText || document.title.replace(' - YouTube', '');
+    if (!currentTitle) {
+        console.log('SpotJump: Could not find video title');
+        return;
+    }
+    const cleanTitle = currentTitle.replace(/[\(\[\{].*?[\)\]\}]/g, '').trim();
+    const query = encodeURIComponent(cleanTitle);
+    window.open(`https://open.spotify.com/search/${query}`, '_blank');
+}
+
+// Listen for messages from background script (extension icon click)
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "jumpToSpotify") {
+        jumpToSpotify();
     }
 });
