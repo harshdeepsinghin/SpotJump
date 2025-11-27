@@ -3,7 +3,10 @@ chrome.action.onClicked.addListener((tab) => {
     if (tab.url && tab.url.includes("youtube.com/watch")) {
         // Send a message to the content script
         chrome.tabs.sendMessage(tab.id, { action: "jumpToSpotify" });
+    } else if (tab.url && tab.url.includes("open.spotify.com")) {
+        // Send a message to the Spotify content script
+        chrome.tabs.sendMessage(tab.id, { action: "jumpToYouTube" });
     } else {
-        console.log("SpotJump: Not a YouTube video page.");
+        console.log("SpotJump: Not a supported page.");
     }
 });

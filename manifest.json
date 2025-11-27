@@ -34,6 +34,17 @@
       "css": [
         "styles.css"
       ]
+    },
+    {
+      "matches": [
+        "*://open.spotify.com/*"
+      ],
+      "js": [
+        "spotify_content.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
     }
   ]
 }

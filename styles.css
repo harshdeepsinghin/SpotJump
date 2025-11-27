@@ -62,3 +62,36 @@ html[dark] .spotjump-btn:hover {
 .spotjump-text {
     line-height: 1;
 }
+
+/* Spotify to YouTube Button */
+.spotjump-yt-btn {
+    background-color: transparent;
+    color: #b3b3b3;
+    /* Spotify inactive icon color */
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    transition: all 0.2s;
+}
+
+.spotjump-yt-btn:hover {
+    color: #fff;
+    /* Spotify active icon color */
+    transform: scale(1.04);
+}
+
+.spotjump-yt-btn svg {
+    fill: currentColor;
+}
+
+/* Optional: Make it red on hover to signify YouTube? */
+.spotjump-yt-btn:hover {
+    color: #FF0000;
+}
