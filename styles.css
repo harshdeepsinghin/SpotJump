@@ -1,0 +1,64 @@
+.spoti-search-btn {
+    background-color: #1DB954;
+    /* Spotify Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0 16px;
+    height: 36px;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Roboto", "Arial", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    margin-right: 8px;
+    /* Add spacing to the right */
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+/* Dark mode support - keep it green but maybe adjust hover */
+@media (prefers-color-scheme: dark) {
+    .spoti-search-btn {
+        background-color: #1DB954;
+        color: white;
+    }
+
+    .spoti-search-btn:hover {
+        background-color: #1ed760;
+    }
+}
+
+/* Also try to detect YouTube's dark mode class if possible, usually on html tag */
+html[dark] .spoti-search-btn {
+    background-color: #1DB954;
+    color: white;
+}
+
+html[dark] .spoti-search-btn:hover {
+    background-color: #1ed760;
+}
+
+.spoti-search-btn:hover {
+    background-color: #1ed760;
+}
+
+.spoti-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+}
+
+.spoti-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    /* Matches text color */
+}
+
+.spoti-text {
+    line-height: 1;
+}

@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "SpotiSearch for YouTube",
+  "version": "1.0",
+  "description": "Search for the current YouTube video on Spotify",
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}
