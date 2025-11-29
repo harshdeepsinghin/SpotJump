@@ -17,8 +17,24 @@ function injectSpotifyButton() {
         const nowPlayingWidget = document.querySelector('div[data-testid="now-playing-widget"]');
         if (nowPlayingWidget) {
             // console.log('SpotJump: Like button not found, appending to Now Playing widget');
-            // We want to append it to the end of the widget, or after the last child
             anchor = nowPlayingWidget;
+        }
+    }
+
+    // Strategy 3: Fallback for PWA/Responsive layouts - Find the Now Playing Bar footer
+    if (!anchor) {
+        const nowPlayingBar = document.querySelector('footer[data-testid="now-playing-bar"]');
+        if (nowPlayingBar) {
+            // Try to find the left part (song info)
+            const leftPart = nowPlayingBar.querySelector('div[data-testid="now-playing-widget"]') ||
+                nowPlayingBar.querySelector('.now-playing-bar__left'); // Legacy class
+
+            if (leftPart) {
+                anchor = leftPart;
+            } else {
+                // Last resort: just append to the footer's first child (usually the left container)
+                anchor = nowPlayingBar.firstElementChild;
+            }
         }
     }
 
