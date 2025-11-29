@@ -16,14 +16,14 @@ function injectSpotifyButton() {
     if (!anchor) {
         const nowPlayingWidget = document.querySelector('div[data-testid="now-playing-widget"]');
         if (nowPlayingWidget) {
-            console.log('SpotJump: Like button not found, appending to Now Playing widget');
+            // console.log('SpotJump: Like button not found, appending to Now Playing widget');
             // We want to append it to the end of the widget, or after the last child
             anchor = nowPlayingWidget;
         }
     }
 
     if (anchor) {
-        console.log('SpotJump: Found anchor for injection:', anchor);
+        // console.log('SpotJump: Found anchor for injection:', anchor);
 
         const btn = document.createElement('button');
         btn.className = 'spotjump-yt-btn';
@@ -45,9 +45,9 @@ function injectSpotifyButton() {
             anchor.insertAdjacentElement('afterend', btn);
         }
 
-        console.log('SpotJump: YouTube button injected successfully');
+        // console.log('SpotJump: YouTube button injected successfully');
     } else {
-        console.log('SpotJump: No suitable anchor found for injection');
+        // console.log('SpotJump: No suitable anchor found for injection');
     }
 }
 
@@ -59,7 +59,7 @@ function jumpToYouTube() {
     // Try to get title and artist from the Now Playing widget
     const nowPlayingWidget = document.querySelector('div[data-testid="now-playing-widget"]');
     if (!nowPlayingWidget) {
-        console.log('SpotJump: Now playing widget not found');
+        // console.log('SpotJump: Now playing widget not found');
         return;
     }
 
@@ -80,11 +80,11 @@ function jumpToYouTube() {
     }
 
     if (!query.trim()) {
-        console.log('SpotJump: Could not extract song info');
+        // console.log('SpotJump: Could not extract song info');
         return;
     }
 
-    console.log('SpotJump: Searching YouTube for:', query);
+    // console.log('SpotJump: Searching YouTube for:', query);
     const encodedQuery = encodeURIComponent(query.trim());
     window.open(`https://www.youtube.com/results?search_query=${encodedQuery}`, '_blank');
 }

@@ -7,6 +7,6 @@ chrome.action.onClicked.addListener((tab) => {
         // Send a message to the Spotify content script
         chrome.tabs.sendMessage(tab.id, { action: "jumpToYouTube" });
     } else {
-        console.log("SpotJump: Not a supported page.");
+        // console.log("SpotJump: Not a supported page.");
     }
 });

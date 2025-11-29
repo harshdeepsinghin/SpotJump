@@ -9,11 +9,11 @@ function injectButton() {
     if (likeDislikeContainer && likeDislikeContainer.parentElement) {
         // Ensure the container is actually attached to the DOM to avoid "node is not a child" errors
         if (!likeDislikeContainer.isConnected) {
-            console.log('SpotJump: Like/Dislike container found but not connected to DOM');
+            // console.log('SpotJump: Like/Dislike container found but not connected to DOM');
             return;
         }
 
-        console.log('SpotJump: Found Like/Dislike container, injecting button...');
+        // console.log('SpotJump: Found Like/Dislike container, injecting button...');
 
         const btn = document.createElement('button');
         btn.className = 'spotjump-btn';
@@ -34,12 +34,12 @@ function injectButton() {
         try {
             // insertAdjacentElement is safer as it doesn't require manually finding parent and sibling
             likeDislikeContainer.insertAdjacentElement('afterend', btn);
-            console.log('SpotJump: Button injected successfully');
+            // console.log('SpotJump: Button injected successfully');
         } catch (e) {
-            console.error('SpotJump: Error injecting button:', e);
+            // console.error('SpotJump: Error injecting button:', e);
         }
     } else {
-        console.log('SpotJump: Like/Dislike container not found yet');
+        // console.log('SpotJump: Like/Dislike container not found yet');
     }
 }
 
@@ -59,7 +59,7 @@ function startInjectionLoop() {
 
         if (attempts > 20) { // Stop after 10 seconds (20 * 500ms)
             clearInterval(injectionInterval);
-            console.log('SpotJump: Gave up injecting button after 10 seconds');
+            // console.log('SpotJump: Gave up injecting button after 10 seconds');
             return;
         }
 
@@ -82,14 +82,14 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 // Initial check
 if (window.location.href.includes('/watch')) {
-    console.log('SpotJump: Initial check started');
+    // console.log('SpotJump: Initial check started');
     startInjectionLoop();
 } else {
-    console.log('SpotJump: Not a watch page');
+    // console.log('SpotJump: Not a watch page');
 }
 
 window.addEventListener('yt-navigate-finish', () => {
-    console.log('SpotJump: yt-navigate-finish detected');
+    // console.log('SpotJump: yt-navigate-finish detected');
     if (window.location.href.includes('/watch')) {
         startInjectionLoop();
     }
@@ -99,7 +99,7 @@ window.addEventListener('yt-navigate-finish', () => {
 function jumpToSpotify() {
     const currentTitle = document.querySelector('ytd-watch-metadata h1')?.innerText || document.title.replace(' - YouTube', '');
     if (!currentTitle) {
-        console.log('SpotJump: Could not find video title');
+        // console.log('SpotJump: Could not find video title');
         return;
     }
     const cleanTitle = currentTitle.replace(/[\(\[\{].*?[\)\]\}]/g, '').trim();
