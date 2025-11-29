@@ -1,0 +1,39 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Chrome Extension (MV3)
+        run: |
+          zip -r SpotJump-Chrome-${{ github.ref_name }}.zip . -x "*.git*" ".github/*" "node_modules/*" "*.DS_Store" "manifest.firefox.json" "firefox_dist/*"
+
+      - name: Build Firefox Extension (MV2)
+        run: |
+          mkdir firefox_build
+          cp background.js content.js spotify_content.js styles.css firefox_build/
+          cp -r icons firefox_build/
+          cp manifest.firefox.json firefox_build/manifest.json
+          cd firefox_build
+          zip -r ../SpotJump-Firefox-${{ github.ref_name }}.zip .
+          cd ..
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            SpotJump-Chrome-${{ github.ref_name }}.zip
+            SpotJump-Firefox-${{ github.ref_name }}.zip
+          generate_release_notes: true

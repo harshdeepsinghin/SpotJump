@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SpotJump",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Jump from YouTube to Spotify instantly",
   "icons": {
     "16": "icons/icon16.png",
@@ -15,6 +15,10 @@
       "128": "icons/icon128.png"
     },
     "default_title": "Jump to Spotify"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
   "background": {
     "service_worker": "background.js"
@@ -49,7 +53,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "spotjump@antigravity.dev",
+      "id": "spotjump@harshdeepsingh.in",
       "strict_min_version": "109.0"
     }
   }
