@@ -23,7 +23,7 @@ jobs:
       - name: Build Firefox Extension (MV2)
         run: |
           mkdir firefox_build
-          cp background.js content.js spotify_content.js styles.css firefox_build/
+          cp background.js content.js spotify_content.js styles.css options.html options.css firefox_build/
           cp -r icons firefox_build/
           cp manifest.firefox.json firefox_build/manifest.json
           cd firefox_build
